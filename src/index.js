@@ -11,33 +11,40 @@ import ReactDOM from 'react-dom';
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
 
-    //this is the only time we do direct assignment
-    // to this.state
-    this.state = { lat: null ,lang:null,errorMessage:''};
+  //   //this is the only time we do direct assignment
+  //   // to this.state
+  //   this.state= { lat: null ,lang:null,errorMessage:''};
 
+    
+  // }
+
+  state= { lat: null ,lang:null,errorMessage:''};
+
+  //this .state inside constructor and state outside constructor are doing the same task
+  // as state outside will undergoe into babel and produce the same constructor there fore we can simply remove the constructor
+
+  componentDidMount(){
+
+    //preloading like geolocation can be done in constructor as well as in componentDidMount
+    //but professional prefer 
     window.navigator.geolocation.getCurrentPosition(
       position => {
         console.log(position)
-        // we called setState
+        // we called setState and set stte will chnge and call render
         this.setState({ lat: position.coords.latitude ,lang:position.coords.longitude})
 
 
-        //never ever do this
+        //never ever do this because render pr no farak
         // this.state.lat=position.coords.latitude
       },
       err =>{
         this.setState({errorMessage:err.message})
       }
     )
-  }
-
-
-  componentDidMount(){
-    console.log(" componentDidMount ");
   }
 
   componentWillUpdate(){
