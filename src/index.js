@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay'
+import Spinner from './Spinner'
 // const App=()=>{
 //   window.navigator.geolocation.getCurrentPosition(
 //     position=>console.log(position),
@@ -44,13 +45,9 @@ class App extends React.Component {
       }
     )
   }
-   componentWillUpdate(){
-    console.log(" componentWillUpdate ");
-  }
+   
 
-  
-  //React says we always have to define a Rander !!!
-  render() {
+  renderContent(){
     // never ever call the function that takes some time to fetch eg the latitude/Comditional Rendering
 
     // /
@@ -67,7 +64,20 @@ class App extends React.Component {
 
 
     else if(!this.state.lang && !this.state.errorMessage)
-    return <div>LOADING!!!!</div>
+    return <Spinner message='please accept location'/>
+  }
+  
+  //React says we always have to define a Rander !!!
+  render() {
+    //if we want to have border red on no matter which if condtion to be executed
+    //then we will create a helper function renderContent which hepls int the exection od correct if statement and in this
+    //render function we can simply add the property
+
+    return(
+      <div className="border red">
+       { this.renderContent()}
+      </div>
+    )
 
   }
 }

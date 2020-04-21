@@ -6,7 +6,7 @@ import React from 'react';
 // it takes ou css and stick with index.html file in public folder
 const seasonConfig={
     summer:{
-        text:'lets"s hit the beach',
+        text:'let\'s hit the beach',
         iconName:'sun'
     },
     winter:{
