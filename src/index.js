@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import SeasonDisplay from './SeasonDisplay'
 // const App=()=>{
 //   window.navigator.geolocation.getCurrentPosition(
 //     position=>console.log(position),
@@ -33,12 +33,10 @@ class App extends React.Component {
     //but professional prefer 
     window.navigator.geolocation.getCurrentPosition(
       position => {
-        console.log(position)
         // we called setState and set stte will chnge and call render
+        // console.log(position.coords.latitude)
         this.setState({ lat: position.coords.latitude ,lang:position.coords.longitude})
-
-
-        //never ever do this because render pr no farak
+         //never ever do this because render pr no farak
         // this.state.lat=position.coords.latitude
       },
       err =>{
@@ -46,8 +44,7 @@ class App extends React.Component {
       }
     )
   }
-
-  componentWillUpdate(){
+   componentWillUpdate(){
     console.log(" componentWillUpdate ");
   }
 
@@ -59,8 +56,16 @@ class App extends React.Component {
     // /
     if(this.state.errorMessage && !this.state.lat)
     return <div>ERROR: {this.state.errorMessage}</div>
+
+
     else if(this.state.lat && !this.state.errorMessage)
-    return <div>LOCATION: {this.state.lat}</div>
+    return <div><SeasonDisplay lat={this.state.lat }/></div>
+    //taking state(lat) from one component(App) and passing as a prob to child component(SaeasonDisplay)
+    //Whenever the this.setState is called  the lat property of app component will be change(App rerender itself) ,
+    // since lat is changing  so  new value of latite will
+    // be pass to the SeasonDispay and dthus the SeasonDisplay will also be rerendered
+
+
     else if(!this.state.lang && !this.state.errorMessage)
     return <div>LOADING!!!!</div>
 
