@@ -1,4 +1,9 @@
+import './SeasonDisplay.css';
 import React from 'react';
+
+//webpack  is alibrraby that joins different file together 
+// it sees that seasondisplay.css file
+// it takes ou css and stick with index.html file in public folder
 const seasonConfig={
     summer:{
         text:'lets"s hit the beach',
@@ -28,12 +33,12 @@ const SeasonDisplay = (props) => {
 
     //  ${variable} into string 
     // as Diksha+2 in string
-    return (<div>
+    return (<div className={`season-display ${season}`} >
        
         {/* <i className={`${icon} icon`}  /> */}
-        {<i className={` massive ${iconName} icon`}  /> }
+        {<i className={`icon-left massive ${iconName} icon`}  /> }
         <h1>{text}</h1>
-        <i className={` massive ${iconName} icon`}  />
+        <i className={`icon-right  massive ${iconName} icon`}  />
     </div>)
 }
 export default SeasonDisplay;
